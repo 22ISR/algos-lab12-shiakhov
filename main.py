@@ -3,7 +3,6 @@ from tkinter import ttk
 from random import *
 import math
 
-
 root = Tk()
 root.title("Генератор паролей")
 root.geometry("300x250")
@@ -38,24 +37,33 @@ all_spase = [
 
 # ФУНКЦИОНАЛ
 
-# Функционал "Количество цифр в пароле"
+# Функционал "Добавить цифры"
+
+
+
+
 
 def button():
-    limit = int(spinbox.get())
-    limit_number = randint(1, math.ceil(limit /2 - 1))
-    limit_symbols = math.ceil(limit / 2 - limit_number)
-    limit_letters = (limit - limit_number - limit_symbols)
-    print(limit_number)
+    limit = int(Spinbox.get())
+    limit_numbers = randint(1, math.ceil(limit /2 - 1))
+    limit_symbols = math.ceil(limit / 2 - limit_numbers)
+    limit_letters = (limit - limit_numbers - limit_symbols)
+    print(limit_numbers)
     print(limit_symbols)
     password = []
-    for i in range(limit_number):
+    for i in range(limit_numbers):
         password.append(choice(all_number))
     for i in range(limit_symbols):
         password.append(choice(all_symbols))
     for i in range(limit_letters):
         password.append(choice(all_letters))
     shuffle(password)
-    field.insert(field.index("end"), password)
+    print(password)
+
+
+
+
+
 
 
 
@@ -63,8 +71,8 @@ def button():
 # ИНТЕРФЕЙС 
 
 # Количество цифр в пароле 
-spinbox = ttk.Spinbox(from_=1.0, to=100.0)
-spinbox.pack(anchor=N)
+Spinbox = ttk.Spinbox(from_=1.0, to=100.0)
+Spinbox.pack(anchor=N)
 
 # Добавить цифры
 number = IntVar() 
@@ -85,7 +93,7 @@ space_checkbutton = ttk.Checkbutton(text="Включать пробелы", vari
 space_checkbutton.pack(padx=6, pady=6, anchor=NW)
 
 #Кнопка генерации
-generation = ttk.Button(text="Сгенерировать")
+generation = ttk.Button(text="Сгенерировать", command=button)
 generation.pack()
 
 #Поле вывода пароля
